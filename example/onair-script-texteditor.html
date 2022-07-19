@@ -1,0 +1,853 @@
+<!--
+ Use this page is for debugging purposes.
+
+ Editor Tools are loaded as git-submodules.
+ You can pull modules by running `yarn pull_tools` and start experimenting.
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Editor.js 🤩🧦🤨 example</title>
+  <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+  <link href="assets/demo.css" rel="stylesheet">
+  <script src="assets/json-preview.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+</head>
+<style>
+.column {
+  float: left;
+  width: 50%;
+}
+
+.display-output {
+  display:flex; 
+  height: 400px; 
+  width: 600px;
+  z-index: -10;
+  background-image: url("assets/background.png");
+  /*padding-top: 33%;*/
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+}
+
+.center-align{
+  display:flex;
+  top: 0px;
+  left: 0px;
+  width: 600px;
+  text-align: center; 
+  align-items: center;
+  justify-content: center;
+}
+
+.header-background {
+  top: 0px;
+  left: 0px;
+  display:flex;
+  height: 400px; 
+  width: 600px;
+  text-align: center; 
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(12, 45, 33);
+  z-index: 10;
+}
+
+.header-text {
+color: rgb(187, 187, 187);
+top:400px;
+font-size: xx-large;
+}
+
+.image-spit-view {
+  top: 100px;
+  left: 20px;
+  position: absolute;
+  height: 130px; 
+  width: 200px;
+  background-color: rgb(12, 45, 33);
+  z-index: 10;
+  background-image: url("assets/pendulum.gif");
+  z-index: 10;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+}
+
+.title {
+border: 5px solid #5d5d03;
+display: flex;
+height: 100px;
+text-align: center;
+vertical-align:middle;
+align-items:center;
+font-size: xx-large;
+}
+
+.div-list-container{
+  position: absolute;
+  top: 350px;
+  left: 0px;
+  width: 600px;
+  z-index: 11;
+}
+
+.div-list-points{
+  display:inline-block;
+  font-weight: bolder;
+  text-align: center;
+  padding: 10px;
+}
+
+.quote{
+  position: absolute;
+  background-color: yellow;
+  top: 300px;
+  font-weight: bolder;
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.typewriter h1 {
+  color: rgb(225, 66, 66);
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation: 
+    typing 2s steps(40, end),
+    blink-caret .75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange; }
+}
+
+.float-child-layout-variations {
+    width: 15%;
+    height: 80px;
+    padding: 20px;
+    border: 2px solid rgb(106, 104, 104);
+    display:inline-block;
+}  
+
+</style>
+<body>
+  <script>
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add("dark-mode");
+    }
+  </script>
+  <div class="ce-example">
+    <div style="text-align: center;">
+      <h1>Onair Lite</h1>
+    </div>
+    
+    <div class="row">
+      <div class="column">
+        <div id="display-output" class="display-output">
+          
+          <div id="section-0" class="center-align" style="display:none">
+            <div  class="typewriter" ><h1>RealitySketch</h1></div>
+          </div>
+
+          <div id="section-1" class="center-align" style="display:none">
+            <div class="quote" >The only source of knowledge is experience</div>
+          </div>
+            
+          
+         <div id="section-2" class="header-background" style="display:none">
+            <div class="header-text"><h2>Key Features</h2></div>
+          </div>
+          <div id="section-4" class="image-spit-view" style="display:none" ></div>
+          
+          <div id="section-3" class="div-list-container" style="display:none">
+            <div  class="div-list-points" ><div style="background-color: yellow">Selection</div></div>
+            <div  class="div-list-points" ><div style="background-color: yellow">Parameterization</div></div>
+            <div  class="div-list-points" ><div style="background-color: yellow">Visualization</div></div>
+          </div>
+
+          <div id="section-5" class="header-background" style="display:none">
+            <div class="header-text"><h2>Applications</h2></div>
+          </div>
+          
+          <!--chapter slides, lists, image (split view)-->
+
+        </div>
+        <div style="width: 600px;">
+          <div class="float-child-layout-variations"></div>
+          <div class="float-child-layout-variations"></div>
+          <div class="float-child-layout-variations"></div>
+        </div>
+        <!--<img src="assets/conf.png" >
+        <canvas id="myCanvas" width="600" height="600" style="border:1px solid #000000;">
+        </canvas>
+        <div class="vertical-center">Title Video</div>-->
+      </div>
+      
+
+    <div class="column"><!--"ce-example__content"-->
+      
+      <div id="editorjs"></div>
+      <div class="ce-example__button" id="saveButton">
+        Preview / Save
+      </div>
+      <div id="hint-core" style="text-align: center;">
+        No core bundle file found. Run <code class="inline-code">yarn build</code>
+      </div>
+      <div id="hint-tools" style="text-align: center;">
+        No submodules found. Run <code class="inline-code">yarn pull_tools && yarn tools:update</code>
+      </div>
+      
+      <div class="ce-example__statusbar">
+        <div class="ce-example__statusbar-item">
+          Readonly:
+          <b id="readonly-state">
+            Off
+          </b>
+          &nbsp;
+          <div class="ce-example__statusbar-button" id="toggleReadOnlyButton">
+            toggle
+          </div>
+        </div>
+        <div class="ce-example__statusbar-item">
+          <div class="ce-example__statusbar-button" id="showBlocksBoundariesButton">
+            <span data-toggled-text="Hide">Show</span>
+            blocks boundaries
+          </div>
+        </div>
+        <div class="ce-example__statusbar-item">
+          <div class="ce-example__statusbar-button" id="enableThinModeButton">
+            <span data-toggled-text="Disable">Enable</span>
+            thin mode
+          </div>
+        </div>
+        <div class="ce-example__statusbar-item ce-example__statusbar-item--right">
+          <div class="ce-example__statusbar-toggler" id="darkThemeToggler">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+    <div class="ce-example__output">
+      <pre class="ce-example__output-content" id="output"></pre>
+
+      <div class="ce-example__output-footer">
+        <a href="https://codex.so" style="font-weight: bold;">Made by CodeX</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load Tools -->
+  <!--
+   You can upload Tools to your project's directory and use as in example below.
+
+   Also you can load each Tool from CDN or use NPM/Yarn packages.
+
+   Read more in Tool's README file. For example:
+   https://github.com/editor-js/header#installation
+   -->
+  <script src="./tools/header/dist/bundle.js" onload="document.getElementById('hint-tools').hidden = true"></script><!-- Header -->
+  <script src="./tools/simple-image/dist/bundle.js"></script><!-- Image -->
+  <script src="./tools/delimiter/dist/bundle.js"></script><!-- Delimiter -->
+  <!--  <script src="./tools/list/dist/bundle.js"></script> List-->
+  <script src="./tools/nested-list/dist/nested-list.js"></script><!-- Nested List -->
+  <script src="./tools/checklist/dist/bundle.js"></script><!-- Checklist -->
+  <script src="./tools/quote/dist/bundle.js"></script><!-- Quote -->
+  <script src="./tools/code/dist/bundle.js"></script><!-- Code -->
+  <script src="./tools/embed/dist/bundle.js"></script><!-- Embed -->
+  <script src="./tools/table/dist/table.js"></script><!-- Table -->
+  <script src="./tools/link/dist/bundle.js"></script><!-- Link -->
+  <script src="./tools/raw/dist/bundle.js"></script><!-- Raw -->
+  <script src="./tools/warning/dist/bundle.js"></script><!-- Warning -->
+
+  <script src="./tools/marker/dist/bundle.js"></script><!-- Marker -->
+  <script src="./tools/inline-code/dist/bundle.js"></script><!-- Inline Code -->
+  <script src="./tools/editorjs-tooltip/dist/bundle.js"></script><!-- Tooltip Code -->
+
+  <!-- Load Editor.js's Core -->
+  <script src="../dist/editor.js" onload="document.getElementById('hint-core').hidden = true;"></script>
+
+  <!-- Initialization -->
+  <script>
+    /**
+     * Editor init config
+     * @see https://editorjs.io/configuration
+     */
+    
+    const editorConfig = {
+      /**
+       * Enable/Disable the read only mode
+       */
+      readOnly: false,
+
+      /**
+       * Wrapper of Editor
+       */
+      holder: 'editorjs',
+
+      /**
+       * Common Inline Toolbar settings
+       * - if true (or not specified), the order from 'tool' property will be used
+       * - if an array of tool names, this order will be used
+       */
+      // inlineToolbar: ['link', 'marker', 'bold', 'italic'],
+      // inlineToolbar: true,
+
+      /**
+       * Tools list
+       */
+      tools: {
+        /**
+         * Each Tool is a Plugin. Pass them via 'class' option with necessary settings {@link docs/tools.md}
+         */
+        header: {
+          class: Header,
+          inlineToolbar: ['marker', 'link'],
+          config: {
+            placeholder: 'Header'
+          },
+          shortcut: 'CMD+SHIFT+H'
+        },
+
+        /**
+         * Or pass class directly without any configuration
+         */
+        image: SimpleImage,
+
+        list: {
+          class: NestedList,
+          inlineToolbar: true,
+          shortcut: 'CMD+SHIFT+L'
+        },
+
+        checklist: {
+          class: Checklist,
+          inlineToolbar: true,
+        },
+
+        quote: {
+          class: Quote,
+          inlineToolbar: true,
+          config: {
+            quotePlaceholder: 'Enter a quote',
+            captionPlaceholder: 'Quote\'s author',
+          },
+          shortcut: 'CMD+SHIFT+O'
+        },
+
+        warning: Warning,
+
+        marker: {
+          class:  Marker,
+          shortcut: 'CMD+SHIFT+M'
+        },
+
+        code: {
+          class:  CodeTool,
+          shortcut: 'CMD+SHIFT+C'
+        },
+
+        delimiter: Delimiter,
+
+        inlineCode: {
+          class: InlineCode,
+          shortcut: 'CMD+SHIFT+C'
+        },
+
+        linkTool: LinkTool,
+
+        raw: RawTool,
+
+        embed: Embed,
+
+        table: {
+          class: Table,
+          inlineToolbar: true,
+          shortcut: 'CMD+ALT+T'
+        },
+
+        tooltip: {
+          class: Tooltip,
+          config: {
+              location: 'left',
+              highlightColor: '#FFEFD5',
+              underline: true,
+              backgroundColor: '#154360',
+              textColor: '#FDFEFE',
+              holder: 'editorId',
+            }
+          }
+
+      },
+
+      /**
+       * This Tool will be used as default
+       */
+      // defaultBlock: 'paragraph',
+
+      /**
+       * Initial Editor data
+       */
+      data: {
+        blocks: [
+          
+          {
+            id: "zcKCF1S7X8",
+            type: "header",
+            data: {
+              text: "Reality Sketch",
+              level: 1
+            }
+          },
+          {
+            "id": "b6ji-DvaKb",
+            "type": "paragraph",
+            "data": {
+              "text": "What if we could draw mathematical diagrams and visualizations in the real-world? Visualizations that are driven by physical objects and phenomena? As Albert Eistein said - <mark class=\"cdx-marker\">The only source of knowledge is experience</mark>"
+            }
+          },
+          
+          {
+            type: "header",
+            id: "7ItVl5biRo",
+            data: {
+              text: "Key features",
+              level: 2
+            }
+          },
+          {
+            type : 'list',
+            id: "SSBSguGvP7",
+            data : {
+              items : [
+                {
+                  content: 'The first step is <mark class=\"cdx-marker\">selecting </mark> an object',
+                  items: []
+                },
+                {
+                  content: 'Once selected, we need to <mark class=\"cdx-marker\">parameterize</mark> the real world object',
+                  items: []
+                },
+                {
+                  content: 'Once selected, the final step is to <mark class=\"cdx-marker\">visualization</mark> the parameter and interact with it',
+                  items: []
+                }
+              ],
+              style: 'unordered'
+            }
+          },
+          
+          {
+            type: 'image',
+            id: "9802bjaAA2",
+            data: {
+              url: 'assets/pendulum.gif',
+              caption: 'relitysketch, pendulum, visualization',
+              stretched: false,
+              withBorder: true,
+              withBackground: false,
+            }
+          },
+          {
+            type: "header",
+            id: "QZFox1m_ul",
+            data: {
+              text: "Applications",
+              level: 2
+            }
+          },
+          {
+            type : 'paragraph',
+            id: "bwnFX5LoX7",
+            data : {
+              text : 'We demonstrate a range of applications for RS in action. for instance, <mark class=\"cdx-marker\">in education, a teaching assistance is helping to select, parameterize, and visualize the pendulum motion. if we swing it faster or slower, we will be able to see the effects in realtime </mark>.'
+            }
+          },
+          {
+            type : 'paragraph',
+            id: "mTrPOHAQTe",
+            data : {
+              text : `There are dozens of other applications, including in-situ tangible interactions, mathematical education, and  <a href="https://github.com/editor-js">explorable explanations</a>.`
+            }
+          },
+          {
+            type: "header",
+            id: "1sYMhUrznu",
+            data: {
+              text: "Future works",
+              level: 2
+            }
+          },
+          
+          {
+            type : 'paragraph',
+            id: "0lOGNUKxqt",
+            data : {
+              text : `In the future we would like to explore <code class="inline-code">Web clients</code>, render natively for <code class="inline-code">mobile apps</code>, create markup for <code class="inline-code">Facebook Instant Articles</code> or <code class="inline-code">Google AMP</code>, generate an <code class="inline-code">audio version</code> and so on.`
+            }
+          },
+          
+        ]
+      },
+      onReady: function(){
+        //saveButton.click();
+      },
+      onChange: function(api, event) {
+        console.log('something changed', event);
+        // todo, call the function.
+      },
+    }
+
+    let lastBlockIndex = 0;
+
+    /**
+     * To initialize the Editor, create a new instance with configuration object
+     * @see docs/installation.md for mode details
+     */
+    var editor = new EditorJS(editorConfig);
+
+    document.addEventListener('keydown', (event) => {
+      var name = event.key;
+      var code = event.code;
+      //console.log(editor.blocks.getCurrentBlockIndex());
+
+      updateDisplayCanvas();
+
+      // Alert the key name and key code on keydown
+      //alert(`Key pressed ${name} \r\n Key code value: ${code}`);
+    }, false);
+
+    document.addEventListener('click', (event) => {
+      
+      //--------------READ BLOCK DATA---------------
+      //console.log("printing block: " );
+      //console.log(editor.blocks.getBlockByIndex(0).toString());
+      
+      //hide all the elements.
+      // display corresponding block.
+     
+      updateDisplayCanvas();
+      
+      
+      /*let elements = document.querySelectorAll(`[id^="section-"]`);//document.getElementById("*");
+      //console.log("no of elements found "+elements.length);
+      for(let i=0;i<elements.length;i++){
+        elements[i].style.display = "none"; // hide all elements
+      }
+
+      let elementName = "section-" + editor.blocks.getCurrentBlockIndex();
+      //console.log(elementName);
+
+      let element = document.getElementById(elementName);
+      if(element)
+        element.style.display = "flex";*/
+
+      // Alert the key name and key code on keydown
+      //alert(`Key pressed ${name} \r\n Key code value: ${code}`);
+    }, false);
+
+    /**
+     * Saving button
+     */
+    const saveButton = document.getElementById('saveButton');
+
+    /**
+     * Toggle read-only button
+     */
+    const toggleReadOnlyButton = document.getElementById('toggleReadOnlyButton');
+    const readOnlyIndicator = document.getElementById('readonly-state');
+
+    /**
+     * Saving example
+     */
+    var resultString = "";
+
+    saveButton.addEventListener('click', function () {
+      editor.save()
+        .then((savedData) => {
+          cPreview.show(savedData, document.getElementById("output"));
+
+          /*var a = document.createElement("a");
+          var file = new Blob([JSON.stringify(savedData)], {type: 'text/plain'});
+          a.href = URL.createObjectURL(file);
+          a.download = 'json.txt';
+          a.click();*/
+          //console.log(savedData);
+          //console.log("===========")
+          //console.log(editor.blocks.getBlockByIndex(0));
+
+          //==============================
+
+          // extract the marks inside a block data.
+          /*var elementDiv = document.createElement('div');
+          elementDiv.insertAdjacentHTML('beforeend', savedData.blocks[1].data.text );
+          elementDiv.querySelectorAll('mark')
+
+          //let marks = document.querySelectorAll('mark');
+          let marks = elementDiv.querySelectorAll('b');
+          console.log(marks);
+
+          marks[0].insertAdjacentHTML('beforeend', '-barrra');
+          console.log(marks);*/
+
+          //editor.blocks.render(savedData);
+
+          // need to update the render()
+
+         
+          // read the "type" of block data & render corresponding layout
+          console.log(savedData.blocks[lastBlockIndex]);
+          if((savedData.blocks[lastBlockIndex].type == 'header')) {
+            if(savedData.blocks[lastBlockIndex].data.level == 1)
+              generateTitleDiv(savedData.blocks[lastBlockIndex].data.text);
+            if(savedData.blocks[lastBlockIndex].data.level == 2)
+              generateHeaderDiv(savedData.blocks[lastBlockIndex].data.text);
+          }
+          if(((savedData.blocks[lastBlockIndex].type == 'list'))){
+            generateListDiv(savedData.blocks[lastBlockIndex].data);
+          }
+          if(((savedData.blocks[lastBlockIndex].type == 'paragraph'))){
+            generateQuoteDiv(savedData.blocks[lastBlockIndex].data.text);
+          }
+          if(((savedData.blocks[lastBlockIndex].type == 'image'))){
+            generateImageDiv();
+          }
+
+        })
+        .catch((error) => {
+          console.error('Saving error', error);
+        });
+    });
+
+
+    function updateDisplayCanvas(){
+      if(editor.blocks.getCurrentBlockIndex()>-1){
+        lastBlockIndex = editor.blocks.getCurrentBlockIndex();
+      } else 
+        return;
+      
+      editor.save()
+        .then((savedData) => {
+          cPreview.show(savedData, document.getElementById("output"));
+         
+          // read the "type" of block data & render corresponding layout
+          console.log(savedData.blocks[lastBlockIndex]);
+          if((savedData.blocks[lastBlockIndex].type == 'header')) {
+            if(savedData.blocks[lastBlockIndex].data.level == 1)
+              generateTitleDiv(savedData.blocks[lastBlockIndex].data.text);
+            if(savedData.blocks[lastBlockIndex].data.level == 2)
+              generateHeaderDiv(savedData.blocks[lastBlockIndex].data.text);
+          }
+          if(((savedData.blocks[lastBlockIndex].type == 'list'))){
+            generateListDiv(savedData.blocks[lastBlockIndex].data);
+          }
+          if(((savedData.blocks[lastBlockIndex].type == 'paragraph'))){
+            generateQuoteDiv(savedData.blocks[lastBlockIndex].data.text);
+          }
+          if(((savedData.blocks[lastBlockIndex].type == 'image'))){
+            generateImageDiv();
+          }
+
+        })
+        .catch((error) => {
+          console.error('Saving error', error);
+        });
+    }
+    
+
+    function generateListDiv(listData){
+      // remove previous "content" div and clear it up
+      const element = document.getElementById("content");
+      if (element) element.remove();
+
+      // append a div
+      var newDiv = document.createElement("div");
+      newDiv.id = "content";
+      newDiv.classList.add("div-list-container");
+      newDiv.style.display = "flex"; 
+
+      // take it inside a for loop
+      for (let i=0;i<listData.items.length;i++){
+        let childDiv = document.createElement("div");
+        childDiv.classList.add("div-list-points");
+        childDiv.style.width = 100/listData.items.length + '%';
+
+        let childDiv2 = document.createElement("div");
+        childDiv2.style.backgroundColor = 'yellow';
+        
+
+        // Parse through the data and only type go through the highlighted words.
+        console.log(listData.items[i].content);
+
+        var elementDiv = document.createElement('div');
+        elementDiv.insertAdjacentHTML('beforeend', listData.items[i].content );
+        elementDiv.querySelectorAll('mark')
+
+        //let marks = document.querySelectorAll('mark');
+        let marks = elementDiv.querySelectorAll('mark');
+        //console.log(marks);
+
+        if(marks.length>0){
+          childDiv2.innerHTML = marks[0].innerHTML;
+        } else {
+          childDiv2.innerHTML = listData.items[i].content;
+        }
+        childDiv.appendChild(childDiv2);
+        newDiv.appendChild(childDiv);
+      }
+
+
+      document.getElementById("display-output").appendChild(newDiv);
+    }
+
+    function generateQuoteDiv(text){
+      const element = document.getElementById("content");
+      if (element) element.remove();
+      
+      // append a div
+      var newDiv = document.createElement("div");
+      newDiv.id = "content";
+      newDiv.classList.add("center-align");
+      newDiv.style.display = "flex"; 
+
+      let childDiv = document.createElement("div");
+      childDiv.classList.add("quote");
+
+      var elementDiv = document.createElement('div');
+      elementDiv.insertAdjacentHTML('beforeend', text );
+      elementDiv.querySelectorAll('mark');
+      let marks = elementDiv.querySelectorAll('mark');
+      if(marks.length>0){
+        childDiv.innerHTML = marks[0].innerHTML;
+      } else {
+        childDiv.innerHTML = "";
+      }
+      
+      newDiv.appendChild(childDiv);
+
+      document.getElementById("display-output").appendChild(newDiv);
+          
+    }
+
+    function generateImageDiv(){
+      // remove previous "content" div and clear it up
+      const element = document.getElementById("content");
+      if (element) element.remove();
+
+      var newDiv = document.createElement("div");
+      newDiv.id = "content";
+      newDiv.classList.add("image-spit-view");
+      newDiv.style.display = "flex"; 
+
+      document.getElementById("display-output").appendChild(newDiv);      
+
+      //<div id="section-4" class="image-spit-view" style="display:none" ></div>
+    }
+
+    function generateHeaderDiv(text){
+      // remove previous "content" div and clear it up
+      const element = document.getElementById("content");
+      if (element) element.remove();
+
+      // append a div
+      var newDiv = document.createElement("div");
+      newDiv.id = "content";
+      newDiv.classList.add("header-background");
+      newDiv.style.display = "flex"; 
+
+      let childDiv = document.createElement("div");
+      childDiv.classList.add("header-text");
+      
+      let h2= document.createElement('H2');
+      h2.innerHTML = text;
+      childDiv.appendChild(h2);
+      newDiv.appendChild(childDiv);
+
+      document.getElementById("display-output").appendChild(newDiv);
+          
+    }
+
+    function generateTitleDiv(text){
+      // remove previous "content" div and clear it up
+      const element = document.getElementById("content");
+      if (element) element.remove();
+      
+      // append a div
+      var newDiv = document.createElement("div");
+      newDiv.id = "content";
+      newDiv.classList.add("center-align");
+      newDiv.style.display = "flex"; 
+
+      let childDiv = document.createElement("div");
+      childDiv.classList.add("typewriter");
+      
+      let h1= document.createElement('H1');
+      h1.innerHTML = text;
+      childDiv.appendChild(h1);
+      newDiv.appendChild(childDiv);
+
+      document.getElementById("display-output").appendChild(newDiv);
+    }
+
+    /**
+     * Toggle read-only example
+     */
+    toggleReadOnlyButton.addEventListener('click', async () => {
+      const readOnlyState = await editor.readOnly.toggle();
+
+      readOnlyIndicator.textContent = readOnlyState ? 'On' : 'Off';
+    });
+
+    /**
+     * Button for displaying blocks borders. Useful for UI development
+     */
+    const showBlocksBoundariesButton = document.getElementById("showBlocksBoundariesButton");
+
+    showBlocksBoundariesButton.addEventListener('click', () => {
+      document.body.classList.toggle("show-block-boundaries")
+    })
+
+    /**
+     * Button for enabling the 'Thin' mode
+     */
+    const enableThinModeButton = document.getElementById("enableThinModeButton");
+
+    enableThinModeButton.addEventListener('click', () => {
+      document.body.classList.toggle("thin-mode")
+
+      editor.destroy();
+
+      editor = new EditorJS(editorConfig);
+    })
+
+    /**
+     * Toggler for toggling the dark mode
+     */
+    const darkThemeToggler = document.getElementById("darkThemeToggler");
+
+    darkThemeToggler.addEventListener('click', () => {
+      document.body.classList.toggle("dark-mode");
+
+      localStorage.setItem('theme', document.body.classList.contains("dark-mode") ? 'dark' : 'default');
+    })
+  </script>
+</body>
+</html>
